@@ -2,6 +2,7 @@ let minutesElement,
   secondsElement,
   startButtonElement,
   stopButtonElement,
+  setTimerbuttonElement,
   interval,
   originalPageTitle;
 
@@ -10,9 +11,23 @@ let counter = 20 * 60;
 window.onload = () => {
   minutesElement = $("#counter span");
   secondsElement = $("#counter span:nth-child(3)");
+
   startButtonElement = $("#start");
   stopButtonElement = $("#stop");
+  setTimerbuttonElement = $("#set");
+
   originalPageTitle = document.title;
+
+  setTimerbuttonElement.addEventListener("click", () => {
+    const newTimer = prompt("Type the new timer in minutes", "25");
+
+    const newTimerParsed = parseInt(newTimer);
+
+    if (!isNaN(newTimerParsed)) {
+      counter = newTimerParsed * 60;
+      printCounter();
+    }
+  });
 
   startButtonElement.addEventListener("click", () => {
     startTimer();
